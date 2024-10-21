@@ -24,6 +24,7 @@
  */
 package io.github.astrapi69.collection;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -33,6 +34,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
+
 
 /**
  * The class {@link CollectionExtensions} is an extension class for use with {@link Collection}
@@ -254,5 +256,28 @@ public final class CollectionExtensions
 			return (List<T>)collection;
 		}
 		return new ArrayList<>(collection);
+	}
+
+	/**
+	 * Creates a new generic array from the given {@link Collection} object
+	 *
+	 * @param <T>
+	 *            the generic type of the objects in the {@link Collection} object
+	 * @param collection
+	 *            the collection to transform
+	 * @return the new generic array created from the given {@link Collection} object, or an empty
+	 *         array if the collection is empty
+	 */
+	public static <T> T[] toArray(final Collection<T> collection)
+	{
+		if (collection == null || collection.isEmpty())
+		{
+			return null;
+		}
+
+		List<T> list = toList(collection);
+		@SuppressWarnings("unchecked")
+		T[] array = (T[])Array.newInstance(list.get(0).getClass(), list.size());
+		return list.toArray(array);
 	}
 }

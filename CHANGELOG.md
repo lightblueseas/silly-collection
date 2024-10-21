@@ -7,6 +7,15 @@ Version 28.2-SNAPSHOT
 ADDED:
 
 - new method in class ArrayExtensions that joins two arrays of the same type into a single array
+- new method in class CollectionExtensions that creates a new array from the given Collection object
+
+CHANGED:
+
+- update gradle to new version 8.11-rc-1
+- update of gradle-plugin dependency 'com.diffplug.spotless:spotless-plugin-gradle' to new beta version 7.0.0.BETA3
+- update of dependency jobj-core in new version 9.1
+- update of test dependency file-worker to new version 18.0
+- update of test dependency mockito-core to new version 5.14.2
 
 Version 28.1
 -------------

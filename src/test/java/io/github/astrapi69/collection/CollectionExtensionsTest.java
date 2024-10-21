@@ -24,6 +24,7 @@
  */
 package io.github.astrapi69.collection;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -46,7 +47,39 @@ public class CollectionExtensionsTest
 {
 
 	/**
-	 * Test method for {@link CollectionExtensions#containsAtLeastOne(Collection, Object[])}
+	 * Test method for {@link CollectionExtensions#toArray(Collection)}
+	 */
+	@Test
+	public void testToArray()
+	{
+		Integer[] expected;
+		Integer[] actual;
+		Collection<Integer> data;
+
+		// Test with LinkedHashSet
+		data = SetFactory.newLinkedHashSet(1, 2, 3);
+		expected = ArrayFactory.newArray(1, 2, 3);
+		actual = CollectionExtensions.toArray(data);
+		assertArrayEquals(expected, actual);
+
+		// Test with ArrayList
+		data = ListFactory.newArrayList(1, 2, 3);
+		actual = CollectionExtensions.toArray(data);
+		assertArrayEquals(expected, actual);
+
+		// Test with null collection
+		data = null;
+		actual = CollectionExtensions.toArray(data);
+		assertNull(actual);
+
+		// Test with empty LinkedHashSet
+		data = SetFactory.newLinkedHashSet();
+		actual = CollectionExtensions.toArray(data);
+		assertNull(actual);
+	}
+
+	/**
+	 * Test method for {@link CollectionExtensions#toList(Collection)}
 	 */
 	@Test
 	public void testToList()
